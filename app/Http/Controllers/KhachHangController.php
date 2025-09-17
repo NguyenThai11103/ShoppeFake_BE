@@ -28,10 +28,11 @@ use Illuminate\Support\Facades\Http;
 
 class KhachHangController extends Controller
 {
-    public function search(Request $request){
-        $noi_dung_tim = '%'. $request->noi_dung_tim . '%';
+    public function search(Request $request)
+    {
+        $noi_dung_tim = '%' . $request->noi_dung_tim . '%';
         $data   =  KhachHang::where('ho_va_ten', 'like', $noi_dung_tim)
-                            ->get();
+            ->get();
         return response()->json([
             'data'  => $data
         ]);
@@ -51,6 +52,20 @@ class KhachHangController extends Controller
                 'message'   => 'Bạn cần đăng nhập hệ thống!'
             ]);
         }
+    }
+    public function Register(ThemMoiKhachHangRequest $request)
+    {
+        KhachHang::create([
+            'ho_va_ten'     => $request->ho_va_ten,
+            'so_dien_thoai' => $request->so_dien_thoai,
+            'email'         => $request->email,
+            'password'      => $request->password,
+            'ngay_sinh'     => $request->ngay_sinh,
+        ]);
+        return response()->json([
+            'status'    => 1,
+            'message'   => 'Thêm Mới khách hàng thành công!',
+        ]);
     }
     public function Login(KhachHangLoginRequest $request)
     {

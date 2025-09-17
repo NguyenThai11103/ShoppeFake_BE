@@ -210,6 +210,7 @@ Route::post('/shipper/don-hang/thong-ke', [ThongkeController::class, 'dataThongK
 
 // ===========================================    KHÁCH HÀNG    ===============================================
 // khach-hang/dang nhập
+Route::post('/khach-hang/dang-ky', [KhachHangController::class, 'Register']);
 Route::get('/khach-hang/check-token', [KhachHangController::class, 'checkToken']);
 Route::post('/khach-hang/dang-nhap', [KhachHangController::class, 'Login']);
 Route::get('/khach-hang/dang-xuat', [KhachHangController::class, 'DangXuat']);
